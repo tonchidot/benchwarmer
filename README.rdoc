@@ -1,8 +1,32 @@
-= benchwarmer
+= Benchwarmer
 
-Description goes here.
+Benchwarmer is a Ruby gem that provides a wrapper for interacting with the "Benchmark Email"[http://www.benchmarkemail.com/API/Doc] API.
 
-== Contributing to benchwarmer
+== Requirements
+
+You will need a {Mailchimp}[http://www.benchmarkemail.com/API/Doc] account. Once you have your Mailchimp account set up, you will need your username and password to access the API.
+
+== Installation
+
+  (sudo) gem install benchwarmer
+
+== Usage
+
+Please refer to the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] for information about what methods are available, the arguments that should be passed to each method, and the output that the API will return. Start by creating a Benchwarmer object:
+
+  h = Benchwarmer::API.new('username', 'password')
+
+You can also override the default configuration by passing in your own when initializing:
+
+  h = Benchwarmer::API.new('username', 'password, {:secure => true, :timeout => 60})
+
+You can then run any of the methods that you find in the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] against it. Simply convert the names to the more Ruby-like underscored versions (e.g. listGetContactDetails becomes list_get_contact_details).
+
+== Travis Build Status
+
+{<img src="http://travis-ci.org/terra-firma/benchwarmer.png" />}[http://travis-ci.org/terra-firma/benchwarmer]
+
+== Contributing to Benchwarmer
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
@@ -14,6 +38,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2012 Brian Getting. See LICENSE.txt for
-further details.
+Copyright (c) 2012 Terra Firma Design & Consulting. See LICENSE.txt for further details.
 
