@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "benchwarmer"
   gem.homepage = "http://github.com/bgetting/benchwarmer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A Ruby wrapper for the Benchmark Email API.}
+  gem.description = %Q{Benchwarmer is a Ruby gem that provides a wrapper for interacting with the “Benchmark Email” API.}
   gem.email = "brian@terra-firma-design.com"
   gem.authors = ["Brian Getting"]
   # dependencies defined in Gemfile
