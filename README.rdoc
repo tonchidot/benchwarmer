@@ -1,6 +1,6 @@
 = Benchwarmer
 
-Benchwarmer is a Ruby gem that provides a wrapper for interacting with the "Benchmark Email"[http://www.benchmarkemail.com/API/Doc] API.
+Benchwarmer is a Ruby gem that provides a wrapper for interacting with the {Benchmark Email API}[http://www.benchmarkemail.com/API/Doc].
 
 == Requirements
 
