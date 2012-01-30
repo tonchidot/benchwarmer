@@ -15,7 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "benchwarmer"
-  gem.homepage = "http://github.com/bgetting/benchwarmer"
+  gem.homepage = "http://github.com/terra-firma/benchwarmer"
   gem.license = "MIT"
   gem.summary = %Q{A Ruby wrapper for the Benchmark Email API.}
   gem.description = %Q{Benchwarmer is a Ruby gem that provides a wrapper for interacting with the “Benchmark Email” API.}
