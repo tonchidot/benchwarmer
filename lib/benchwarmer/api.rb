@@ -13,38 +13,32 @@ module Benchwarmer
       # TODO: Raise an error if there is no username or password
       defaults = {
         :api_version        => BENCHMARK_API_VERSION,
-        :autologin          => true,
         :secure             => false,
         :timeout            => nil
       }
       @config = defaults.merge(config).freeze
       protocol = @config[:secure] ? 'https' : 'http'
-      @apiClient = XMLRPC::Client.new2("#{protocol}://api.benchmarkemail.com/#{@config[:api_version]}/", nil, @config[:timeout])
-      begin
-        @api_token = @apiClient.call("login", username, password)
-      rescue
-        # TODO: Raise this error like a normal person.
-         puts "*** Benchmark Email API Error ***"
-         puts "Connection: #{@apiClient}"
-         puts "Login: #{username}"
-         puts "Password: #{password}"
-      end
+      @api_client = XMLRPC::Client.new2("#{protocol}://api.benchmarkemail.com/#{@config[:api_version]}/", nil, @config[:timeout])
+      login(username, password)
+    end
+    
+    def login(username, password)
+      @api_token = @api_client.call("login", username, password)
+    rescue
+      # TODO: Raise an error if there is no token
     end
 
     def method_missing(api_method, *args) # :nodoc:
-      @apiClient.call(camelize_api_method_name(api_method.to_s), @api_token, *args)
+      @api_client.call(camelize_api_method_name(api_method.to_s), @api_token, *args)
     rescue XMLRPC::FaultException => error
-      # TODO: Check out the error codes at Benchmark
-      #super if error.faultCode == -32601
+      super if error.message.include?("unsupported method called:")
       raise APIError.new(error)
     end
     
     def respond_to?(api_method) # :nodoc:
-      @apiClient.call(api_method, @api_token)
+      @api_client.call(api_method, @api_token)
     rescue XMLRPC::FaultException => error
-      #error.faultCode == -32601 ? false : true 
-      # TODO: Check out the error codes at Benchmark
-      true
+      error.message.include?("unsupported method called:") ? false : true
     end
     
     private
@@ -56,7 +50,7 @@ module Benchwarmer
   
   class APIError < StandardError
     def initialize(error)
-      super("<#{error.faultCode}> #{error.message}")
+      super("#{error.message}")
     end
   end
 
