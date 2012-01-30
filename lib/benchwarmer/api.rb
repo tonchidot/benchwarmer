@@ -10,11 +10,10 @@ module Benchwarmer
 
     # Initialize with an API key and config options
     def initialize(username, password, config = {})
-      raise ArgumentError.new('Please enter your Benchmark Email account username.') unless username
       defaults = {
-        :api_version        => BENCHMARK_API_VERSION,
-        :secure             => false,
-        :timeout            => nil
+        :api_version => BENCHMARK_API_VERSION,
+        :secure => false,
+        :timeout => nil
       }
       @config = defaults.merge(config).freeze
       protocol = @config[:secure] ? 'https' : 'http'
