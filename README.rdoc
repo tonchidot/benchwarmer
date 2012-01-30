@@ -14,13 +14,29 @@ You will need a {Mailchimp}[http://www.benchmarkemail.com/API/Doc] account. Once
 
 Please refer to the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] for information about what methods are available, the arguments that should be passed to each method, and the output that the API will return. Start by creating a Benchwarmer object:
 
-  h = Benchwarmer::API.new('username', 'password')
+  b = Benchwarmer::API.new('username', 'password')
 
 You can also override the default configuration by passing in your own when initializing:
 
-  h = Benchwarmer::API.new('username', 'password, {:secure => true, :timeout => 60})
+  b = Benchwarmer::API.new('username', 'password, {:secure => true, :timeout => 60})
 
 You can then run any of the methods that you find in the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] against it. Simply convert the names to the more Ruby-like underscored versions (e.g. listGetContactDetails becomes list_get_contact_details).
+
+  # Retrieve all contact lists
+  b.list_get('', 1, 100, '', '')
+  
+  # Add contacts to a list
+  contacts = [
+    {
+      :email => 'sample@subscriber.com',
+      :firstname => 'Bob',
+      :lastname => 'Smith
+    }
+  ]
+  b.list_add_contacts('list_id', contacts, 0) # => Change to '1' for double opt-in
+  
+  # Create a new contact list
+  b.list_create('My List Name') #	=> Returns the ID of the newly created list
 
 == Travis Build Status
 
