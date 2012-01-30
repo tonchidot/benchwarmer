@@ -20,9 +20,10 @@ module Benchwarmer
       @config = defaults.merge(config).freeze
       protocol = @config[:secure] ? 'https' : 'http'
       @apiClient = XMLRPC::Client.new2("#{protocol}://api.benchmarkemail.com/#{@config[:api_version]}/", nil, @config[:timeout])
-      @api_token = @apiClient.call("login", username, password)
       begin
+        @api_token = @apiClient.call("login", username, password)
       rescue
+        # TODO: Raise this error like a normal person.
          puts "*** Benchmark Email API Error ***"
          puts "Connection: #{@apiClient}"
          puts "Login: #{username}"
@@ -33,14 +34,17 @@ module Benchwarmer
     def method_missing(api_method, *args) # :nodoc:
       @apiClient.call(camelize_api_method_name(api_method.to_s), @api_token, *args)
     rescue XMLRPC::FaultException => error
-      super if error.faultCode == -32601
+      # TODO: Check out the error codes at Benchmark
+      #super if error.faultCode == -32601
       raise APIError.new(error)
     end
     
     def respond_to?(api_method) # :nodoc:
       @apiClient.call(api_method, @api_token)
     rescue XMLRPC::FaultException => error
-      error.faultCode == -32601 ? false : true 
+      #error.faultCode == -32601 ? false : true 
+      # TODO: Check out the error codes at Benchmark
+      true
     end
     
     private
