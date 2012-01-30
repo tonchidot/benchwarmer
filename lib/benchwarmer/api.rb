@@ -5,12 +5,12 @@ module Benchwarmer
       undef_method m unless m.to_s =~ /^__|object_id|method_missing|respond_to?|to_s|inspect/
     end
     
-    # Benchmark Email API Documentation: http://www.mailchimp.com/api/1.3/
+    # Benchmark Email API Documentation: http://www.benchmarkemail.com/API/Library
     BENCHMARK_API_VERSION = "1.0"
 
     # Initialize with an API key and config options
     def initialize(username, password, config = {})
-      # TODO: Raise an error if there is no username or password
+      raise ArgumentError.new('Please enter your Benchmark Email account username.') unless username
       defaults = {
         :api_version        => BENCHMARK_API_VERSION,
         :secure             => false,
@@ -24,8 +24,8 @@ module Benchwarmer
     
     def login(username, password)
       @api_token = @api_client.call("login", username, password)
-    rescue
-      # TODO: Raise an error if there is no token
+    rescue XMLRPC::FaultException => error
+      raise APIError.new(error)
     end
 
     def method_missing(api_method, *args) # :nodoc:

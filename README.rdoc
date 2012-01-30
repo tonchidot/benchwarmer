@@ -4,7 +4,7 @@ Benchwarmer is a Ruby gem that provides a wrapper for interacting with the {Benc
 
 == Requirements
 
-You will need a {Mailchimp}[http://www.benchmarkemail.com/API/Doc] account. Once you have your Mailchimp account set up, you will need your username and password to access the API.
+You will need a {Benchmark Email account}[http://www.benchmarkemail.com/Register]. Once you have your Benchmark account set up, you will need your username and password to access the API.
 
 == Installation
 
@@ -16,7 +16,7 @@ Please refer to the {Benchmark Email API Documentation}[http://www.benchmarkemai
 
   b = Benchwarmer::API.new('username', 'password')
 
-You can also override the default configuration by passing in your own when initializing:
+Don't forget that your "username" can also be your email address, depending on how you have set up your Benchmark Email account. You can also override the default configuration by passing in your own when initializing:
 
   b = Benchwarmer::API.new('username', 'password, {:secure => true, :timeout => 60})
 
