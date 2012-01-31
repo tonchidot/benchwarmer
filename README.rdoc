@@ -50,8 +50,8 @@ Each time you "login" to the API to retrieve an access token, the Benchmark Emai
 
   # Add a new API token
   Benchwarmer::API.token_add('username/email', 'password', {:secure => true})
-  
-	# Delete an API token
+
+  # Delete an API token
   Benchwarmer::API.token_add('username/email', 'password', 'api_token_to_delete', {:secure => true})
 
 == Travis Build Status
