@@ -12,13 +12,18 @@ You will need a {Benchmark Email account}[http://www.benchmarkemail.com/Register
 
 == Usage
 
-Please refer to the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] for information about what methods are available, the arguments that should be passed to each method, and the output that the API will return. Start by creating a Benchwarmer object:
+The first step is to login to the Benchmark Email API and get your API access token, which you will want to store for later use. Keep in mind that each time you "login" to the API, a new token will be generated. Token management is discussed further down. Don't forget that your "username" can also be your email address, depending on how you have set up your Benchmark Email account. 
 
-  b = Benchwarmer::API.new('username', 'password')
+  token = Benchwarmer::API.login('username/email', 'password')
+  > "833a7c7ff769414699eee73ac90cff98" # => Store this value for later use.
 
-Don't forget that your "username" can also be your email address, depending on how you have set up your Benchmark Email account. You can also override the default configuration by passing in your own when initializing:
+Once you have your API access token, the next step is to create a Benchwarmer object:
 
-  b = Benchwarmer::API.new('username', 'password, {:secure => true, :timeout => 60})
+  b = Benchwarmer::API.new(token)
+
+You can also override the default configuration by passing in your own when initializing:
+
+  b = Benchwarmer::API.new(token, {:secure => true, :timeout => 60, :api_version => '1.0'})
 
 You can then run any of the methods that you find in the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] against it. Simply convert the names to the more Ruby-like underscored versions (e.g. listGetContactDetails becomes list_get_contact_details).
 
@@ -27,16 +32,18 @@ You can then run any of the methods that you find in the {Benchmark Email API Do
   
   # Add contacts to a list
   contacts = [
-    {
-      :email => 'sample@subscriber.com',
+    { :email => 'sample@subscriber.com',
       :firstname => 'Bob',
-      :lastname => 'Smith'
-    }
+      :lastname => 'Smith' }
   ]
   b.list_add_contacts('list_id', contacts, 0) # => Change to '1' for double opt-in
   
   # Create a new contact list
   b.list_create('My List Name') #	=> Returns the ID of the newly created list
+
+== Dealing With Tokens
+
+Each time you "login" to the API to retrieve an access token, the Benchmark Email API will generate a new access token. The problem with this is that if you don't store your token and instead login each time, tokens will build up. Since having a lot of tokens that grant access to your account via the API is a bad idea, {Benchwarmer}[http://rubygems.org/gems/benchwarmer] provides methods to manage your tokens.
 
 == Travis Build Status
 
