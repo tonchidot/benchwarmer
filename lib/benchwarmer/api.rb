@@ -49,7 +49,7 @@ module Benchwarmer
   
   class APIError < StandardError
     def initialize(error)
-      super("#{error.message}")
+      super("(#{error.faultCode}) #{error.message}")
     end
   end
 
