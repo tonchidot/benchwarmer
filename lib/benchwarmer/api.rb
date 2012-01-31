@@ -5,6 +5,8 @@ module Benchwarmer
       undef_method m unless m.to_s =~ /^__|object_id|method_missing|respond_to?|to_s|inspect/
     end
     
+    include Benchwarmer::Token
+    
     # Benchmark Email API Documentation: http://www.benchmarkemail.com/API/Library
     BENCHMARK_API_VERSION = "1.0"
 
@@ -15,14 +17,16 @@ module Benchwarmer
         :secure => false,
         :timeout => nil
       }
+      @username = username
+      @password = password
       @config = defaults.merge(config).freeze
       protocol = @config[:secure] ? 'https' : 'http'
       @api_client = XMLRPC::Client.new2("#{protocol}://api.benchmarkemail.com/#{@config[:api_version]}/", nil, @config[:timeout])
-      login(username, password)
+      login
     end
     
-    def login(username, password)
-      @api_token = @api_client.call("login", username, password)
+    def login
+      @api_token = @api_client.call("login", @username, @password)
     rescue XMLRPC::FaultException => error
       raise APIError.new(error)
     end
