@@ -17,6 +17,8 @@ The first step is to login to the Benchmark Email API and get your API access to
   token = Benchwarmer::API.login('username/email', 'password')
   > "833a7c7ff759414699efe73ac90cff98" # => Store this value for later use.
 
+== Usage
+
 Once you have your API access token, the next step is to create a Benchwarmer object:
 
   b = Benchwarmer::API.new(token)
@@ -24,8 +26,6 @@ Once you have your API access token, the next step is to create a Benchwarmer ob
 You can also override the default configuration by passing in your own when initializing:
 
   b = Benchwarmer::API.new(token, {:secure => true, :timeout => 60, :api_version => '1.0'})
-
-== Usage
 
 You can then run any of the methods that you find in the {Benchmark Email API Documentation}[http://www.benchmarkemail.com/API/Library] against it. Simply convert the names to the more Ruby-like underscored versions (e.g. listGetContactDetails becomes list_get_contact_details).
 
