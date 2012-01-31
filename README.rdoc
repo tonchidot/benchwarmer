@@ -10,7 +10,7 @@ You will need a {Benchmark Email account}[http://www.benchmarkemail.com/Register
 
   (sudo) gem install benchwarmer
 
-== Get API Token
+== API Token
 
 The first step is to login to the Benchmark Email API and get your API access token, which you will want to store for later use. Keep in mind that each time you "login" to the API, a new token will be generated. Token management is discussed further down. Don't forget that your "username" can also be your email address, depending on how you have set up your Benchmark Email account. 
 
