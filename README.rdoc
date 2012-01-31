@@ -15,7 +15,7 @@ You will need a {Benchmark Email account}[http://www.benchmarkemail.com/Register
 The first step is to login to the Benchmark Email API and get your API access token, which you will want to store for later use. Keep in mind that each time you "login" to the API, a new token will be generated. Token management is discussed further down. Don't forget that your "username" can also be your email address, depending on how you have set up your Benchmark Email account. 
 
   token = Benchwarmer::API.login('username/email', 'password')
-  > "833a7c7ff769414699eee73ac90cff98" # => Store this value for later use.
+  > "833a7c7ff759414699efe73ac90cff98" # => Store this value for later use.
 
 Once you have your API access token, the next step is to create a Benchwarmer object:
 
@@ -43,7 +43,16 @@ You can then run any of the methods that you find in the {Benchmark Email API Do
 
 == Dealing With Tokens
 
-Each time you "login" to the API to retrieve an access token, the Benchmark Email API will generate a new access token. The problem with this is that if you don't store your token and instead login each time, tokens will build up. Since having a lot of tokens that grant access to your account via the API is a bad idea, {Benchwarmer}[http://rubygems.org/gems/benchwarmer] provides methods to manage your tokens.
+Each time you "login" to the API to retrieve an access token, the Benchmark Email API will generate a new access token. The problem with this is that if you don't store your token and instead login each time, tokens will build up. Since having a lot of tokens that grant access to your account via the API is a bad idea, {Benchwarmer}[http://rubygems.org/gems/benchwarmer] provides methods to manage your tokens:
+
+  # List the valid API tokens for this account
+  Benchwarmer::API.token_get('username/email', 'password', {:secure => true})
+
+  # Add a new API token
+  Benchwarmer::API.token_add('username/email', 'password', {:secure => true})
+  
+	# Delete an API token
+  Benchwarmer::API.token_add('username/email', 'password', 'api_token_to_delete', {:secure => true})
 
 == Travis Build Status
 
