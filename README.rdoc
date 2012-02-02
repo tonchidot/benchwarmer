@@ -59,6 +59,7 @@ Each time you "login" to the API to retrieve an access token, the Benchmark Emai
 == Travis Build Status
 
 {<img src="http://travis-ci.org/terra-firma/benchwarmer.png" />}[http://travis-ci.org/terra-firma/benchwarmer]
+{<img src="http://gemnasium.com/terra-firma/benchwarmer.png" />}[http://gemnasium.com/terra-firma/benchwarmer]
 
 == Contributing to Benchwarmer
  
