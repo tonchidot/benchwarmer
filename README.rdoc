@@ -1,4 +1,4 @@
-= Benchwarmer
+= Benchwarmer {<img src="http://travis-ci.org/terra-firma/benchwarmer.png" />}[http://travis-ci.org/terra-firma/benchwarmer] {<img src="https://gemnasium.com/terra-firma/benchwarmer.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/benchwarmer]
 
 Benchwarmer is a Ruby gem that provides a wrapper for interacting with the {Benchmark Email API}[http://www.benchmarkemail.com/API/Doc].
 
@@ -55,11 +55,6 @@ Each time you "login" to the API to retrieve an access token, the Benchmark Emai
 
   # Delete an API token
   Benchwarmer::API.token_add('username/email', 'password', 'api_token_to_delete', {:secure => true})
-
-== Travis Build Status
-
-{<img src="http://travis-ci.org/terra-firma/benchwarmer.png" />}[http://travis-ci.org/terra-firma/benchwarmer]
-{<img src="http://gemnasium.com/terra-firma/benchwarmer.png" />}[http://gemnasium.com/terra-firma/benchwarmer]
 
 == Contributing to Benchwarmer
  
