@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "benchwarmer"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brian Getting"]
-  s.date = "2012-01-31"
+  s.date = "2012-08-02"
   s.description = "Benchwarmer is a Ruby gem that provides a wrapper for interacting with the \u{201c}Benchmark Email\u{201d} API."
-  s.email = "brian@terra-firma-design.com"
+  s.email = "brian@tatem.ae"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
+    ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
     "Guardfile",
@@ -32,7 +33,7 @@ Gem::Specification.new do |s|
     "spec/benchwarmer_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/terra-firma/benchwarmer"
+  s.homepage = "http://github.com/tatemae-consultancy/benchwarmer"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
@@ -42,29 +43,26 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
       s.add_development_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_development_dependency(%q<jeweler>, [">= 1.8.3"])
+      s.add_development_dependency(%q<rspec>, [">= 2.8.0"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<fakeweb>, [">= 0"])
       s.add_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_dependency(%q<jeweler>, [">= 1.8.3"])
+      s.add_dependency(%q<rspec>, [">= 2.8.0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<fakeweb>, [">= 0"])
     s.add_dependency(%q<guard-rspec>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-    s.add_dependency(%q<rdoc>, ["~> 3.12"])
+    s.add_dependency(%q<jeweler>, [">= 1.8.3"])
+    s.add_dependency(%q<rspec>, [">= 2.8.0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
   end
 end
